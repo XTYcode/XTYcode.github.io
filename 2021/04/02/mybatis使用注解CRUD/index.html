@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"xtycode.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="mybatis-使用注解CRUD">
+  <meta name="description" content="Mybatis-使用注解CRUD">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mybatis-使用注解CRUD">
-<meta property="og:url" content="https://xtycode.github.io/2021/04/02/mybatis%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3CRUD/index.html">
+<meta property="og:title" content="Mybatis-使用注解CRUD">
+<meta property="og:url" content="https://xtycode.github.io/2021/04/02/Mybatis%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3CRUD/index.html">
 <meta property="og:site_name" content="XTY的博客">
-<meta property="og:description" content="mybatis-使用注解CRUD">
+<meta property="og:description" content="Mybatis-使用注解CRUD">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-02T13:50:48.000Z">
-<meta property="article:modified_time" content="2021-04-02T14:05:55.640Z">
+<meta property="article:modified_time" content="2021-04-26T05:18:40.770Z">
 <meta property="article:author" content="Code XTY">
 <meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://xtycode.github.io/2021/04/02/mybatis%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3CRUD/">
+<link rel="canonical" href="https://xtycode.github.io/2021/04/02/Mybatis%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3CRUD/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>mybatis-使用注解CRUD | XTY的博客</title>
+  <title>Mybatis-使用注解CRUD | XTY的博客</title>
   
 
 
@@ -152,7 +152,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xtycode.github.io/2021/04/02/mybatis%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3CRUD/">
+    <link itemprop="mainEntityOfPage" href="https://xtycode.github.io/2021/04/02/Mybatis%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3CRUD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.png">
@@ -165,7 +165,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          mybatis-使用注解CRUD
+          Mybatis-使用注解CRUD
         </h1>
 
         <div class="post-meta">
@@ -189,7 +189,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>mybatis-使用注解CRUD</p>
+        <p>Mybatis-使用注解CRUD</p>
 <a id="more"></a>
 <h1 id="mybatis-使用注解CRUD"><a href="#mybatis-使用注解CRUD" class="headerlink" title="mybatis-使用注解CRUD"></a>mybatis-使用注解CRUD</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">mapper</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.java.pojo.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Select;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">    <span class="comment">//查询全部用户</span></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"select * from user"</span>)   <span class="comment">//使用注解查询</span></span><br><span class="line">    List&lt;User&gt;getUsers();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过id查询用户</span></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"select * from user where id = #&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function">User <span class="title">getUserById</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加用户</span></span><br><span class="line">    <span class="meta">@Insert</span>(<span class="string">"insert into user(id, name, pwd) values(#&#123;id&#125;,#&#123;name&#125;,#&#123;pwd&#125;)"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span>  <span class="title">addUser</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//修改用户</span></span><br><span class="line">    <span class="meta">@Update</span>(<span class="string">"update user set name = #&#123;name&#125;,pwd = #&#123;pwd&#125; where id = #&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">updateUser</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除用户</span></span><br><span class="line">    <span class="meta">@Delete</span>(<span class="string">"delete from user where id = #&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">deleteUser</span><span class="params">(@Param(<span class="string">"id"</span>)</span> <span class="keyword">int</span> id)</span>;            <span class="comment">//@Param    多个的话就需要@Param进行标识</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -227,7 +227,10 @@
     <a href="/2021/03/22/%E6%B3%A8%E8%A7%A3/" rel="prev" title="JAVA注解">
       <i class="fa fa-chevron-left"></i> JAVA注解
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/26/Mybatis%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80/" rel="next" title="Mybatis-框架基础">
+      Mybatis-框架基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -302,7 +305,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
